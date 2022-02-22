@@ -19,7 +19,7 @@ module Rack
       end
 
       def load_rules
-        YAML.load(::File.open(@options[:file_name]).read)
+        YAML.safe_load ::File.open(@options[:file_name]), permitted_classes: [Regexp]
       end
 
       def generate_rules(yaml)
